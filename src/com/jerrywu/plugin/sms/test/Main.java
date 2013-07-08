@@ -11,7 +11,7 @@ public class Main {
 		SMS sms = new SMS("account","password","phoneNumber");
 		sms.setPopup(true);
 
-		System.out.println(sms.sendMessage("警告,有人正在入侵"));
+		System.out.println(sms.sendMessage("訊息內容"));
 	}
 
 }
