@@ -47,7 +47,33 @@ public class SMS {
 		this.popup = popup;
 	}
 	
-	
+	//取得剩餘通數
+	public String getCash()
+	{
+		HTTPRequestTag requestTag = new HTTPRequestTag("http://jerryclass.twsms.com/index.php",HTTPMethod.POST);
+		requestTag.pushAttributes("page","index.htm");
+		requestTag.pushAttributes("username","shengjhe");
+		requestTag.pushAttributes("password","1234");
+		requestTag.pushAttributes("status","　　登入　　","big5");
+		requestTag.pushAttributes("x","61");
+		requestTag.pushAttributes("y","10");
+		
+		//接收Server端的回應
+		HTTPResponseTag responseTag = HTTPConnection.getResult(requestTag, "big5");
+				
+		//取得Cookiese
+		String Cookies = responseTag.getCookies();
+		
+		
+		//取得餘額網址
+		HTTPRequestTag cashTag = new HTTPRequestTag("http://jerryclass.twsms.com/index.php?page=send_now.htm",HTTPMethod.GET);
+		cashTag.setCookies(Cookies);
+		
+		//接收Server端的回應
+		HTTPResponseTag cashResponseTag = HTTPConnection.getResult(cashTag, "big5");
+
+		return (cashResponseTag.getResponse().split("即時發送 - 您的通數還有 <font color=#FF0000>")[1].split("</font>")[0]);
+	}
 	
 	//發送訊息
 	public String sendMessage(String message)
