@@ -52,8 +52,8 @@ public class SMS {
 	{
 		HTTPRequestTag requestTag = new HTTPRequestTag("http://jerryclass.twsms.com/index.php",HTTPMethod.POST);
 		requestTag.pushAttributes("page","index.htm");
-		requestTag.pushAttributes("username","shengjhe");
-		requestTag.pushAttributes("password","1234");
+		requestTag.pushAttributes("username",this.username);
+		requestTag.pushAttributes("password",this.password);
 		requestTag.pushAttributes("status","　　登入　　","big5");
 		requestTag.pushAttributes("x","61");
 		requestTag.pushAttributes("y","10");
